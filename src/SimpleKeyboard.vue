@@ -29,7 +29,8 @@ export default {
     }
   },
   data: () => ({
-    keyboard: null
+    keyboard: null,
+    layoutName: "default"
   }),
   mounted() {
     this.initKeyboard();
@@ -50,6 +51,7 @@ export default {
       let currentLayout = this.keyboard.options.layoutName;
       let shiftToggle = currentLayout === "default" ? "shift" : "default";
 
+      this.layoutName = shiftToggle;
       this.keyboard.setOptions({
         layoutName: shiftToggle
       });
@@ -60,6 +62,9 @@ export default {
         onChange: this.onChange,
         onKeyPress: this.onKeyPress,
         disableButtonHold: true,
+        beforeRender: (keyboard) => {
+          keyboard.options.layoutName = this.layoutName;
+        },
         onRender: (keyboard) => {
           keyboard.setInput(this.input);
         },
