@@ -59,6 +59,7 @@ export default {
         theme: this.theme + " hg-theme-default",
         onChange: this.onChange,
         onKeyPress: this.onKeyPress,
+        disableButtonHold: true,
         onRender: (keyboard) => {
           keyboard.setInput(this.input);
         },
